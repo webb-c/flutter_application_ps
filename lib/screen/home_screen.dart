@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_ps/data/model_student.dart';
 
 class HomeScreen extends StatelessWidget {
   //학생 정보 더미데이터

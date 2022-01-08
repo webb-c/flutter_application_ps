@@ -8,26 +8,31 @@ class AtdScreen extends StatefulWidget {
 
 class _AtdScreenState extends State<AtdScreen> {
   //학생 정보 더미데이터
+  int index = 0;
+  bool check = false;
   List<Student> students = [
     Student.fromMap(
-        {'name': 'Weezer', 'number': '2002', 'img': 'test.png', 'exit': false}),
-    Student.fromMap({
-      'name': 'Weezer2',
-      'number': '2002',
-      'img': 'test.png',
-      'exit': false
-    }),
-    Student.fromMap({
-      'name': 'Weezer3',
-      'number': '2002',
-      'img': 'test.png',
-      'exit': false
-    }),
+        {'name': 'Weezer', 'number': '1994', 'img': 'test.png', 'exit': false}),
+    Student.fromMap(
+        {'name': 'muse', 'number': '2009', 'img': 'test2.jpg', 'exit': false}),
+    Student.fromMap(
+        {'name': 'RHCP', 'number': '2016', 'img': 'test3.jpg', 'exit': false}),
+    Student.fromMap(
+        {'name': 'RATM', 'number': '1992', 'img': 'test4.jpg', 'exit': true}),
   ];
+
+  late List<Widget> images;
+  late List<String> names;
+  late List<String> numbers;
+  late List<bool> exits;
 
   @override
   void initState() {
     super.initState();
+    images = students.map((m) => Image.asset('./images/' + m.img)).toList();
+    names = students.map((m) => m.name).toList();
+    numbers = students.map((m) => m.number).toList();
+    exits = students.map((m) => m.exit).toList();
   }
 
   TextEditingController controller = TextEditingController();
@@ -79,40 +84,28 @@ class _AtdScreenState extends State<AtdScreen> {
                                           size: 25.0,
                                         ),
                                         onPressed: () {
-                                          //학생이름이 데이터에 있는 경우
                                           //if(controller.text == 'name'){
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (BuildContext
-                                                          context) =>
-                                                      Jot(
-                                                        students: [
-                                                          Student.fromMap({
-                                                            'name': 'Weezer',
-                                                            'number': '2002',
-                                                            'img': 'test.png',
-                                                            'exit': false
-                                                          }),
-                                                          Student.fromMap({
-                                                            'name': 'Weezer2',
-                                                            'number': '2002',
-                                                            'img': 'test.png',
-                                                            'exit': false
-                                                          }),
-                                                          Student.fromMap({
-                                                            'name': 'Weezer3',
-                                                            'number': '2002',
-                                                            'img': 'test.png',
-                                                            'exit': false
-                                                          }),
-                                                        ],
-                                                      )));
-                                          //}
+                                          for (int i = 0; i < 4; i++) {
+                                            if (names[i].toString().compareTo(
+                                                    controller.text) ==
+                                                0) {
+                                              check = true;
+                                              index = i;
+                                            }
+                                          }
+                                          if (check) {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (BuildContext
+                                                            context) =>
+                                                        Jot(students, index)));
+                                          }
                                           //없는경우
-                                          //else (){
-                                          //showSnackBar(context);
-                                          //}
+                                          else {
+                                            showSnackBar(context);
+                                          }
+                                          ;
                                         })),
                               ],
                             ),

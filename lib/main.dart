@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_ps/screen/attendance_screen.dart';
+import 'package:flutter_application_ps/screen/calendar_screen.dart';
 import 'package:flutter_application_ps/screen/home_screen.dart';
 import 'package:flutter_application_ps/widget/bottom_bar.dart';
-import 'package:table_calendar/table_calendar.dart'; //캘린더 라이브러리
 
 void main() => runApp(MyApp()); //main에서 MyApp이란 클래스를 호출한다.
 
@@ -87,7 +87,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "맥북타고 이 회사 뜬다",
+      title: "개인 - 출결프로그램 테스트",
       //theme: ThemeData() 테마 설정
       home: DefaultTabController(
         length: 4, //메인화면(공지), 출결기능, 시간표(미구현), 캘린더
@@ -95,7 +95,7 @@ class _MyAppState extends State<MyApp> {
           //앱바 구성
           appBar: AppBar(
             backgroundColor: Colors.blueAccent[400],
-            title: Text('맥북타고 이 회사 뜬다'),
+            title: Text('개인 - 출결프로그램 테스트'),
             centerTitle: true, //가운데 정렬
             elevation: 0.0, //투명도 없앰
           ),
@@ -106,11 +106,11 @@ class _MyAppState extends State<MyApp> {
               HomeScreen(),
               AtdScreen(),
               Container(
-                child: Text('TimeTable'),
+                child: Center(
+                  child: Text('TimeTable - 미완성'),
+                ),
               ),
-              Container(
-                child: Text('Calendar'),
-              ),
+              Calendar(),
             ],
           ),
           bottomNavigationBar:
