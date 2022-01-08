@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_ps/data/model_student.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class HomeScreen extends StatelessWidget {
-  //학생 정보 더미데이터
-  //List<Student> students = [
-  //  Student.fromMap(
-  //      {'name': 'Weezer', 'number': '2002', 'img': 'test.png', 'exit': false})
-  //];
+class HomeScreen extends StatefulWidget {
+  //Firestore대신 FirebaseFirestore써도 되겄지...?
+  _HomeScreenState createState() => _HomeScreenState();
+}
 
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
